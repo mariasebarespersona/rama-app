@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAMA Real Estate</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="text-center text-primary">RAMA Real Estate Management</h2>
+
+        <!-- Upload Form -->
+        <div class="card p-4 my-4">
+            <h4>Upload a Document</h4>
+            <form id="uploadForm">
+                <div class="mb-3">
+                    <label class="form-label">Property ID:</label>
+                    <input type="number" id="property_id" name="property_id" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Document Type:</label>
+                    <select id="doc_type" name="doc_type" class="form-select">
+                        <option value="contract">Contract</option>
+                        <option value="notary_deed">Notary Deed</option>
+                        <option value="notary_registration">Notary Registration</option>
+                        <option value="deposit">Deposit</option>
+                        <option value="tax_ITP_IBA">Tax ITP IBA</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Upload File:</label>
+                    <input type="file" id="file" name="file" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </form>
+        </div>
+
+        <!-- Property Search -->
+        <div class="card p-4 my-4">
+            <h4>Search Property</h4>
+            <form id="searchForm">
+                <div class="mb-3">
+                    <label class="form-label">Property ID:</label>
+                    <input type="number" id="search_property_id" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-success">Search</button>
+            </form>
+        </div>
+
+        <!-- Property Details -->
+        <div id="propertyDetails" class="mt-4"></div>
+    </div>
+    <script>
+      document.getElementById("uploadForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            let formData = new FormData(this);
+            let response = await fetch("/upload", { method: "POST", body: formData });
+            let result = await response.json();
+            alert(result.message);
+        });
+
+      document.getElementById("searchForm").addEventListener("submit", async function(event) {
+          event.preventDefault();
+          let propertyId = document.getElementById("search_property_id").value;
+          let response = await fetch(`/property/${propertyId}`);
+          let result = await response.json();
+          
+          let detailsDiv = document.getElementById("propertyDetails");
+          let docsHtml = Object.entries(result.documents).map(([category, docs]) => 
+              docs.length ? `<li><strong>${category}:</strong> ${docs.map(doc => 
+                  `<a href="#" onclick="fetchDocument(${doc.id}, '${doc.document_type}')">${doc.document_type}</a> (Uploaded: ${doc.uploaded_at})`
+              ).join(", ")}</li>` : ''
+          ).join('');
+  
+          detailsDiv.innerHTML = `
+              <h5>Property Details</h5>
+              <p><strong>Address:</strong> ${result.property.address}</p>
+              <p><strong>Purchase Price:</strong> £${result.property.purchase_price}</p>
+              <p><strong>Status:</strong> ${result.property.status}</p>
+              <h5>Documents</h5>
+              <ul>${docsHtml}</ul>
+              <div id="documentViewer" class="mt-4"></div>
+          `;
+      });
+  
+      async function fetchDocument(docId, docType) {
+    let url = `/document/${docId}`;
+    window.open(url, "_blank");
+}
+  </script>
+
+</body>
+</html>
+
+
+
+
+
