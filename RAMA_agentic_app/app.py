@@ -12,10 +12,9 @@ from agent.tools.document_tool import store_document, delete_document
 load_dotenv()
 assistant_mgr = AssistantManager()
 
-# FastAPI app
+
 app = FastAPI()
 
-# Endpoint to preview PDFs from DB
 @app.get("/docs/{doc_id}")
 def get_document(doc_id: int):
     conn = psycopg2.connect(os.getenv("DATABASE_URL"))
@@ -35,7 +34,7 @@ def get_document(doc_id: int):
     raise HTTPException(status_code=404, detail="Document not found.")
 
 
-# Load dropdown values
+
 def get_property_addresses():
     conn = psycopg2.connect(os.getenv("DATABASE_URL"))
     cur = conn.cursor()
@@ -52,11 +51,10 @@ category_doc_types = {
     "sales": ["sale_contract", "payment_certification"]
 }
 
-# Chat handler
 def chat_interface(message, history):
     return assistant_mgr.handle_message(message)
 
-# UI
+
 with gr.Blocks() as io:
     gr.Markdown("## 🏡 RAMA Agentic Real Estate Assistant")
 
@@ -96,5 +94,5 @@ with gr.Blocks() as io:
             del_cat.change(fn=update_del_doc_types, inputs=[del_cat], outputs=[del_doc_type])
             delete_btn.click(fn=delete_callback, inputs=[del_cat, del_prop, del_doc_type], outputs=[delete_output])
 
-# Mount to FastAPI
+
 gr.mount_gradio_app(app, io, path="/")

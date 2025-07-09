@@ -148,7 +148,7 @@ class AssistantManager:
                             category=args["category"],
                             document_type=args["document_type"],
                         )
-                        deletion_args = args  # Save args to follow up after run
+                        deletion_args = args 
                     elif fn_name == "email_document":
                         result = self.doc_tool.email_document(
                             property_address=args["property_address"],
@@ -160,10 +160,9 @@ class AssistantManager:
 
                     tool_outputs.append({
                         "tool_call_id": tool_call.id,
-                        "output": str(result)  # 🔑 Ensure output is string
+                        "output": str(result)  
                     })
 
-                # Submit tool outputs
                 run = openai.beta.threads.runs.submit_tool_outputs(
                     thread_id=thread_id,
                     run_id=run.id,
@@ -178,7 +177,7 @@ class AssistantManager:
 
             time.sleep(1)
 
-        # 🔁 AFTER run is complete, send clarification message if deletion occurred
+    
         if deletion_args:
             followup_text = (
                 f"The document(s) related to '{deletion_args['document_type']}' at "
@@ -191,13 +190,13 @@ class AssistantManager:
                 content=followup_text
             )
 
-            # Optional: Trigger a follow-up run so assistant internalizes this update
+          
             followup_run = openai.beta.threads.runs.create(
                 thread_id=thread_id,
                 assistant_id=self.assistant.id
             )
 
-            # Wait for follow-up run to complete
+     
             while True:
                 run_status = openai.beta.threads.runs.retrieve(
                     thread_id=thread_id,

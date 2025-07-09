@@ -44,7 +44,6 @@ class DocumentTool:
         if not property_id:
             return "❌ Property not found."
 
-        # Clean and normalize the document_name
         doc_key = document_name.lower().replace(".pdf", "").replace(" ", "_")
 
         for category in ["purchase", "renovation", "sales"]:
@@ -80,7 +79,7 @@ class DocumentTool:
         property_id = get_property_id(address)
         table = f"{category}_documents"
         conn = psycopg2.connect(os.getenv("DATABASE_URL"))
-        cur = conn.cursor() # Adjust this line to match your ORM
+        cur = conn.cursor() 
         
         try:
             if filter_keywords is None:
@@ -105,7 +104,7 @@ class DocumentTool:
         #     conn.close()
 
 
-# Utility function: get property ID by address
+
 def get_property_id(address):
     conn = psycopg2.connect(os.getenv("DATABASE_URL"))
     cur = conn.cursor()
@@ -133,7 +132,6 @@ def store_document(address, category, doc_type, file):
     conn.close()
     return f"✅ {doc_type.replace('_', ' ').title()} uploaded for {address}."
 
-# ❌ Delete document
 def delete_document(address, category, doc_type):
     property_id = get_property_id(address)
     if not property_id:
@@ -154,16 +152,6 @@ def delete_document(address, category, doc_type):
     if deleted == 0:
         return "⚠️ No document found to delete."
     return f"🗑️ Deleted {deleted} document(s) of type {doc_type.replace('_', ' ').title()} for {address}."
-
-
-
-
-    
-
-    
-        
-
-    
 
 
 def send_email_with_attachment(to_email, subject, body, filename, file_content):
