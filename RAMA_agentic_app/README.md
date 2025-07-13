@@ -1,36 +1,36 @@
 # 🏠 RAMA - Real Estate Agentic App
 
-**RAMA** is an AI-powered assistant built for real estate investment and remodeling firms. It streamlines document handling, automates financial tracking, and supports natural language queries — all through an intuitive chat interface.
+**RAMA** is an agentic AI-powered assistant built for real estate investment and remodeling firms. It streamlines document handling, automates financial tracking, allows to send documents directly to emails and supports natural language queries — all through an intuitive chat interface.
 
 ---
 
-## ✨ Features
+## Features
 
-- 💬 **Conversational AI Interface**
+-  **Conversational AI Interface**
   - Ask: “When do I pay Builder X?”
   - Retrieve: “Show documents for 456 Oak Ave”
   - Summarize: “What are the current properties for sale?”
 
-- 📁 **Smart Document Management**
+-  **Smart Document Management**
   - Upload renovation, purchase, and sales documents
   - Automatic classification and linking by property
   - Document search by type, status, or address
 
-- 📊 **Financial Insights**
+- **Financial Insights**
   - View property-level financial summaries
   - Track spending across acquisition, renovation, and sales phases
 
-- ⚙️ **Agentic Automations**
+- **Agentic Automations**
   - Custom agents automate repetitive tasks
   - Email reminders, status updates, and more
 
-- 🔐 **Admin Tools**
+-  **Admin Tools**
   - Custom SQL queries (admin-only)
   - Role-based access control (coming soon)
 
 ---
 
-## 🚀 How to Run the App Locally
+##  How to Run the App Locally
 
 1. **Clone the Repository**
 
@@ -72,20 +72,19 @@ Go to: [http://localhost:7860](http://localhost:7860)
 
 ---
 
-## 🛤️ Roadmap
+##  Roadmap
 
-### ✅ Current Capabilities
+### Current Capabilities
 - Chat interface with document and property queries
 - Property-level status and financial summaries
 - General GPT-powered real estate answers
 - Document filtering by type and address
 
 ### 🔜 Coming Soon
-- 🔐 Authentication & role-based access
-- 📄 PDF parsing and OCR support
-- 📤 Drag-and-drop document uploads with auto-classification
-- ☁️ Deployment via Docker, Streamlit Sharing, Hugging Face Spaces
-- 📊 Agent activity logs, user audit trail
+-  Authentication & role-based access
+- PDF parsing and OCR support
+- Deployment via Docker, Streamlit Sharing, Hugging Face Spaces
+- Agent activity logs, user audit trail
 
 ---
 
@@ -112,19 +111,13 @@ Go to: [http://localhost:7860](http://localhost:7860)
 
 ---
 
-## 👩‍💻 Developer
+##  Developer
 
 **Maria Sebares**  
 Founder & Lead Developer  
 Data Scientist | Agentic AI Systems | Real Estate Tech
 
----
 
-## 📫 Contact
-
-- GitHub: [https://github.com/mariasebarespersona/rama-app](https://github.com/mariasebarespersona/rama-app)
-- Email: [your-email@example.com]
-- Website: Coming Soon
 
 ---
 
