@@ -102,10 +102,10 @@ Go to: [http://localhost:7860](http://localhost:7860)
 
 ## 🧠 Tech Stack
 
-- **Backend**: Python, OpenAI GPT APIs
+- **Backend**: Python, OpenAI GPT APIs, OpenAI Agents SDK (Agentic Framework)
 - **UI**: Gradio (local), Streamlit (optional)
 - **Document Parsing**: PyMuPDF, Tesseract OCR (planned)
-- **Task Automation**: Agentic logic (custom), n8n integration (planned)
+- **Task Automation**: Agentic logic (OpenAI Agents SDK Framework), n8n integration (considered)
 - **Data Storage**: Local for dev, GDPR-compliant cloud planned
 - **Security**: Role permissions, encryption, audit trail (coming)
 
